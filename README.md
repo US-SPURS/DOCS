@@ -1,43 +1,135 @@
-# Mintlify Starter Kit
+# United States Department of Special Projects and Unified Response Services (US-SPURS)
 
-Use the starter kit to get your docs deployed and ready to customize.
+## Enterprise Documentation Overview
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+US-SPURS is an independent federal-scale operational and innovation organization focused on rapid response, infrastructure modernization, advanced technology development, humanitarian support, and resilient public systems.
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+This repository provides a structured enterprise overview of US-SPURS for internal teams, partners, developers, mission planners, and future contributors.
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+## Mission
 
-## Development
+US-SPURS exists to improve safety, stability, resilience, and quality of life through practical innovation, coordinated response systems, infrastructure development, and advanced operational technology.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+## Core Focus Areas
 
+- Emergency response and disaster operations
+- Infrastructure engineering and modernization
+- Artificial intelligence and advanced computing
+- Humanitarian logistics and field deployment
+- Energy resilience and sustainability systems
+- Public systems and civic technology
+- Communications, data, and secure network operations
+- Strategic special projects and research and development
+
+## Strategic Priorities
+
+1. Build deployable systems that can stabilize communities rapidly.
+2. Modernize critical infrastructure in urban and underserved environments.
+3. Develop AI-enabled command, logistics, and operational-awareness platforms.
+4. Create resilient communications, energy, and mobility systems.
+5. Integrate field operations with real-time intelligence and engineering support.
+6. Support long-term humanitarian recovery, not only immediate emergency response.
+
+## Organizational Model
+
+US-SPURS uses centralized strategic leadership with distributed operational execution.
+
+### Executive Direction
+
+- Director
+- Deputy Director
+- Chief Operations Officer
+- Chief Technology Officer
+- Chief Infrastructure Officer
+
+### Core Divisions
+
+- Emergency Response & Disaster Operations
+- Infrastructure Engineering & Development
+- Advanced Research & Technology
+- Artificial Intelligence Systems
+- Logistics & Supply Chain Operations
+- Field Operations
+- Public Systems & Civic Technology
+- Energy & Sustainability Systems
+- Communications & Network Systems
+- Strategic Operations
+- Training & Operational Readiness
+- Administration & Support Services
+
+## Operational Domains
+
+- Disaster response and crisis stabilization
+- Infrastructure modernization and resilience
+- Humanitarian support logistics
+- Public-service technology modernization
+- International infrastructure and humanitarian support
+- Experimental and special-project deployments
+
+## Technology Architecture
+
+US-SPURS uses a layered technology architecture built to support real-world operations.
+
+### Key Systems
+
+- **ATLANTIS AI** for orchestration, situational awareness, and decision support
+- Distributed and edge computing for field operations
+- Resilient communications and network infrastructure
+- Data integration and predictive analytics
+- Automation, robotics, and autonomous operational support
+
+## Infrastructure Footprint
+
+US-SPURS envisions a distributed infrastructure model including:
+
+- Central command and planning facilities
+- Regional operations centers
+- Mobile command and deployment units
+- Engineering and innovation campuses
+- West Coast strategic facility development, including Alameda Naval Air Station redevelopment alignment
+
+## Documentation Set
+
+The enterprise documentation lives in the `spurs/` directory:
+
+- `spurs/index.mdx` — agency overview and documentation map
+- `spurs/organization.mdx` — leadership, divisions, and command structure
+- `spurs/missions.mdx` — operational domains and programs
+- `spurs/technology.mdx` — ATLANTIS AI, computing, data, and innovation
+- `spurs/infrastructure.mdx` — facilities, deployment footprint, and partnerships
+- `spurs/governance.mdx` — doctrine, authority, and accountability
+- `spurs/architecture.mdx` — systems architecture and integration layers
+- `spurs/developer-onboarding.mdx` — contributor orientation and workflow
+- `spurs/engineering-standards.mdx` — production, security, reliability, and quality standards
+
+Repository-wide standards:
+
+- `CONTRIBUTING.md`
+- `SECURITY.md`
+- `.github/PULL_REQUEST_TEMPLATE.md`
+
+## Local Documentation Development
+
+Install the Mintlify CLI:
+
+```bash
+npm install -g mint
 ```
-npm i -g mint
-```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+Run the local documentation site from the repository root:
 
-```
+```bash
 mint dev
 ```
 
-View your local preview at `http://localhost:3000`.
+## Leadership
 
-## Publishing changes
+**Director:** Philip A. Cotton Jr.
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+## Status
 
-## Need help?
+This documentation is a living enterprise baseline. It should continue expanding through formal policy, operational doctrine, engineering standards, architecture decisions, integration guidance, and deployment playbooks.
 
-### Troubleshooting
+## Closing Statement
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+US-SPURS is designed as a practical, scalable, and technology-enabled organization capable of addressing complex modern challenges through coordinated operations, resilient infrastructure, and rapid innovation.
