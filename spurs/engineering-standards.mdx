@@ -1,0 +1,96 @@
+---
+title: "Engineering Standards"
+description: "Baseline engineering, reliability, security, documentation, and delivery standards for US-SPURS systems"
+---
+
+# Engineering Standards
+
+US-SPURS engineering work should be production-minded, mission-oriented, secure, observable, and maintainable.
+
+## General Standard
+
+Every technical system should have a clear purpose, accountable owner, documented architecture, validation strategy, support model, and recovery plan appropriate to its mission impact.
+
+## Design Requirements
+
+Systems should:
+
+- use modular boundaries
+- minimize unnecessary dependencies
+- document trust boundaries
+- support safe configuration
+- fail predictably
+- preserve auditability
+- avoid single points of failure where mission impact is high
+
+## Reliability
+
+Mission-relevant services should define:
+
+- availability objective
+- recovery time objective
+- recovery point objective
+- backup and restoration approach
+- dependency failure behavior
+- escalation and support ownership
+
+## Security
+
+Engineering teams should apply:
+
+- least privilege
+- secure defaults
+- encrypted transport
+- protected secrets
+- dependency scanning
+- input validation
+- structured security logging
+- routine access review
+
+## Testing
+
+Testing depth should match system risk and include, where relevant:
+
+- unit tests
+- integration tests
+- end-to-end tests
+- security tests
+- failure and recovery tests
+- performance tests
+- field or degraded-mode validation
+
+## Observability
+
+Production systems should expose enough information to determine:
+
+- whether the system is healthy
+- whether users are succeeding
+- where failures occur
+- what changed before an incident
+- which dependency is responsible
+
+Use structured logs, metrics, traces, health checks, and actionable alerting.
+
+## Documentation
+
+Technical work should include:
+
+- setup instructions
+- architecture overview
+- configuration reference
+- operational runbook
+- troubleshooting guidance
+- deployment and rollback procedure
+- ownership and escalation information
+
+## Change Management
+
+High-impact changes should be reviewed, tested in a non-production environment, accompanied by a rollback plan, and monitored after release.
+
+## Dependency Management
+
+Dependencies should be necessary, maintained, licensed appropriately, pinned or constrained where practical, and monitored for vulnerabilities.
+
+## Definition of Production Ready
+
+A system is production ready when it is secure, tested, observable, documented, deployable, recoverable, owned, and supportable under expected operating conditions.
