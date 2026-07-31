@@ -1,0 +1,115 @@
+---
+title: "Systems Architecture"
+description: "Reference architecture, system boundaries, integration layers, and engineering principles for US-SPURS"
+---
+
+# Systems Architecture
+
+US-SPURS systems should be designed as a modular, resilient, and interoperable capability ecosystem rather than a single monolithic platform.
+
+## Architecture Objectives
+
+The reference architecture should support:
+
+- rapid deployment
+- secure interoperability
+- degraded-mode operation
+- modular upgrades
+- auditability
+- multi-region resilience
+- field-to-command integration
+
+## Architecture Layers
+
+### 1. Experience Layer
+
+Interfaces used by operators, planners, partners, and administrators.
+
+Examples include dashboards, mobile applications, mission portals, reporting tools, and public-service interfaces.
+
+### 2. Orchestration Layer
+
+Coordinates workflows, AI agents, mission tasks, approvals, and cross-system automation.
+
+ATLANTIS AI serves as the primary orchestration and decision-support framework.
+
+### 3. Service Layer
+
+Provides reusable operational capabilities such as identity, messaging, logistics, mapping, document management, asset tracking, notifications, and workflow services.
+
+### 4. Data Layer
+
+Manages operational data, mission records, telemetry, geospatial data, infrastructure information, and analytics pipelines.
+
+### 5. Integration Layer
+
+Connects internal systems, partner platforms, APIs, event streams, and field equipment.
+
+### 6. Infrastructure Layer
+
+Includes cloud environments, edge compute, mobile systems, local fallback capability, networking, storage, and observability.
+
+### 7. Security Layer
+
+Applies identity, authorization, encryption, segmentation, monitoring, policy enforcement, and incident response controls across every layer.
+
+## Core Engineering Principles
+
+- Prefer modular services over tightly coupled systems.
+- Design for offline and degraded operation where missions require it.
+- Treat identity and access control as foundational architecture.
+- Use open standards and documented interfaces where practical.
+- Make system health observable from the beginning.
+- Separate experimental capability from mission-critical production systems.
+- Plan for replacement, migration, and failure recovery.
+
+## System Boundaries
+
+Every major system should define:
+
+- purpose
+- owner
+- users
+- data inputs and outputs
+- trust boundaries
+- dependencies
+- availability requirements
+- recovery objectives
+- support model
+
+## Integration Standards
+
+Preferred integration patterns include:
+
+- documented REST or event-driven APIs
+- versioned schemas
+- explicit authentication and authorization
+- idempotent operations where possible
+- structured logging and traceability
+- tested failure and retry behavior
+
+## Deployment Environments
+
+A mature deployment model should distinguish:
+
+- development
+- integration testing
+- staging
+- production
+- restricted or sensitive environments
+- field or edge deployments
+
+## Architecture Review
+
+Major systems should receive review before production deployment for:
+
+- security
+- reliability
+- scalability
+- interoperability
+- supportability
+- operational usefulness
+
+## Architecture Decision Records
+
+Significant technical decisions should be captured as Architecture Decision Records documenting context, chosen approach, alternatives, consequences, and review date.
