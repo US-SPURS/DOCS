@@ -1,0 +1,62 @@
+name: Operational request
+description: Request a new playbook, doctrine page, mission guide, integration guide, or operational standard
+title: "[Operational]: "
+labels:
+  - operations
+body:
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Request type
+      options:
+        - Mission playbook
+        - Deployment or recovery playbook
+        - Governance or doctrine
+        - Systems integration guide
+        - Engineering standard
+        - Training or onboarding material
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: need
+    attributes:
+      label: Operational need
+      description: Explain the real-world problem, decision, or workflow this documentation must support.
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Intended users
+      description: Identify roles, teams, partners, or operators who will rely on the finished material.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Required scope and outcome
+      description: Define what must be included and what successful completion looks like.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and related material
+      description: Link relevant systems, policies, ADRs, repositories, or existing pages.
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk if not addressed
+      description: Explain delivery, safety, security, continuity, or coordination consequences.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I searched for existing documentation and issues before submitting.
+          required: true
+        - label: I excluded secrets, protected personal data, and sensitive operational details.
+          required: true
