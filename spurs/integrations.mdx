@@ -1,0 +1,94 @@
+---
+title: "Systems Integration Framework"
+description: "Integration principles, API boundaries, identity, events, MCP, and cross-system interoperability for US-SPURS"
+---
+
+# Systems Integration Framework
+
+US-SPURS systems should integrate through explicit contracts rather than hidden dependencies. The integration layer must support internal services, ATLANTIS AI modules, partner systems, field applications, and future platforms without forcing every system into one technology stack.
+
+## Integration Objectives
+
+- Provider-neutral interoperability
+- Secure exchange of data and commands
+- Durable workflows with audit history
+- Clear ownership of every interface
+- Graceful operation during partial outages
+- Versioned contracts with controlled deprecation
+
+## Integration Patterns
+
+### Synchronous APIs
+
+Use synchronous APIs when a caller requires an immediate response and the operation can complete within a predictable time window.
+
+### Asynchronous Events
+
+Use events for state changes, notifications, long-running operations, and cross-domain coordination. Events should be immutable, timestamped, traceable, and safe to replay.
+
+### Durable Workflows
+
+Long-running missions should use checkpointed workflows with bounded retries, explicit exit conditions, budget controls, and human escalation for genuine exceptions.
+
+### Model Context Protocol
+
+MCP may be used to expose approved tools, data sources, and operational capabilities to ATLANTIS and authorized AI agents. MCP servers must enforce least privilege and publish clear tool schemas.
+
+## Contract Requirements
+
+Every production integration should define:
+
+- owning team or system
+- purpose and authorized consumers
+- request and response schema
+- authentication and authorization method
+- timeout and retry behavior
+- idempotency strategy
+- error taxonomy
+- versioning and deprecation policy
+- observability requirements
+
+## Identity and Trust
+
+Integrations must not assume that network location equals trust. Each request should carry verifiable identity, scoped authorization, and enough context for policy enforcement.
+
+## Data Handling
+
+- Minimize data shared across boundaries.
+- Classify data before integration design.
+- Encrypt sensitive data in transit and at rest.
+- Record access to protected datasets.
+- Define retention and deletion behavior.
+- Avoid copying authoritative data without a defined synchronization model.
+
+## Event Envelope
+
+A standard event should include:
+
+- event identifier
+- event type and schema version
+- source system
+- correlation and causation identifiers
+- creation timestamp
+- actor or workload identity
+- classification and handling metadata
+- payload
+
+## Failure Handling
+
+Integrations should fail predictably. Critical workflows must include:
+
+- timeouts
+- bounded retries with backoff
+- dead-letter or exception handling
+- duplicate protection
+- reconciliation procedures
+- operator-visible status
+
+## ATLANTIS Integration
+
+ATLANTIS should consume capabilities through typed adapters and policy-controlled tools. Provider-specific SDKs should remain behind adapters so routing, auditing, budgets, and failover behavior remain consistent.
+
+## Integration Review Gate
+
+Before production use, an integration should pass architecture, security, data-governance, operational-readiness, and rollback review.
