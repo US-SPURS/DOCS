@@ -1,0 +1,78 @@
+---
+title: "Architecture Decision Records"
+description: "How US-SPURS records consequential technical and operational architecture decisions"
+---
+
+# Architecture Decision Records
+
+Architecture Decision Records (ADRs) preserve why consequential choices were made. They prevent teams from repeatedly reopening settled questions without understanding the original constraints.
+
+## When an ADR Is Required
+
+Create an ADR when a decision materially affects:
+
+- system boundaries
+- security or identity architecture
+- data ownership or retention
+- provider or platform strategy
+- public APIs and event contracts
+- operational resilience
+- major dependencies
+- AI orchestration and tool permissions
+- deployment or hosting architecture
+
+## ADR Lifecycle
+
+1. Proposed
+2. Under review
+3. Accepted
+4. Superseded
+5. Deprecated
+6. Rejected
+
+Accepted ADRs remain in the repository even after being superseded so the decision history remains auditable.
+
+## Required ADR Sections
+
+- Title
+- Status
+- Date
+- Decision owners
+- Context
+- Decision
+- Alternatives considered
+- Consequences
+- Security and privacy impact
+- Operational impact
+- Migration and rollback
+- References
+
+## Decision Quality Standard
+
+An ADR should explain the actual tradeoff. It should not merely state a preferred technology. Reviewers should be able to determine:
+
+- what problem existed
+- what constraints mattered
+- which alternatives were seriously evaluated
+- why the selected approach was stronger
+- which risks were consciously accepted
+
+## Numbering
+
+ADRs should use four-digit sequential identifiers such as:
+
+- `0001-provider-neutral-ai-adapters.md`
+- `0002-durable-workflow-event-history.md`
+- `0003-zero-trust-service-identity.md`
+
+## Ownership
+
+Every ADR must have an accountable decision owner and named reviewers from affected domains. Security, data, operations, and mission owners should participate when the decision affects their responsibilities.
+
+## Relationship to Implementation
+
+Implementation work should reference the controlling ADR in issues and pull requests. Material divergence requires either an ADR amendment or a new superseding ADR.
+
+## Template
+
+Use the repository template at `docs/adr/0000-template.md` for new architecture decisions.
