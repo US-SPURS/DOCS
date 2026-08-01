@@ -90,23 +90,41 @@ US-SPURS envisions a distributed infrastructure model including:
 
 ## Documentation Set
 
-The enterprise documentation lives in the `spurs/` directory:
+The enterprise documentation lives in the `spurs/` directory.
+
+### Enterprise Overview
 
 - `spurs/index.mdx` — agency overview and documentation map
 - `spurs/organization.mdx` — leadership, divisions, and command structure
 - `spurs/missions.mdx` — operational domains and programs
-- `spurs/technology.mdx` — ATLANTIS AI, computing, data, and innovation
 - `spurs/infrastructure.mdx` — facilities, deployment footprint, and partnerships
-- `spurs/governance.mdx` — doctrine, authority, and accountability
+
+### Technology & Engineering
+
+- `spurs/technology.mdx` — ATLANTIS AI, computing, data, and innovation
 - `spurs/architecture.mdx` — systems architecture and integration layers
-- `spurs/developer-onboarding.mdx` — contributor orientation and workflow
+- `spurs/integrations.mdx` — APIs, events, MCP, identity, and interoperability
 - `spurs/engineering-standards.mdx` — production, security, reliability, and quality standards
 
-Repository-wide standards:
+### Operations & Delivery
 
-- `CONTRIBUTING.md`
-- `SECURITY.md`
+- `spurs/deployment-playbooks.mdx` — deployment, validation, rollback, incidents, and recovery
+- `spurs/architecture-decisions.mdx` — architecture decision process and governance
+- `docs/adr/0000-template.md` — reusable Architecture Decision Record template
+
+### Governance & Contribution
+
+- `spurs/governance.mdx` — doctrine, authority, and accountability
+- `spurs/developer-onboarding.mdx` — contributor orientation and workflow
+- `CONTRIBUTING.md` — contribution and review requirements
+- `SECURITY.md` — vulnerability reporting and security expectations
+
+### GitHub Workflow Support
+
 - `.github/PULL_REQUEST_TEMPLATE.md`
+- `.github/ISSUE_TEMPLATE/documentation-change.yml`
+- `.github/ISSUE_TEMPLATE/architecture-proposal.yml`
+- `.github/ISSUE_TEMPLATE/operational-request.yml`
 
 ## Local Documentation Development
 
