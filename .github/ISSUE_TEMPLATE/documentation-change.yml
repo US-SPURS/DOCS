@@ -1,0 +1,59 @@
+name: Documentation change
+description: Propose a correction, expansion, or structural improvement to US-SPURS documentation
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for documentation corrections, additions, reorganizations, and standards improvements.
+  - type: input
+    id: location
+    attributes:
+      label: Affected page or file
+      description: Provide the repository path or documentation page.
+      placeholder: spurs/technology.mdx
+    validations:
+      required: true
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Change type
+      options:
+        - Correction
+        - New content
+        - Structural reorganization
+        - Policy or standards update
+        - Navigation or discoverability
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or gap
+      description: Explain what is inaccurate, missing, unclear, or difficult to use.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed change
+      description: Describe the finished result, not just the editing task.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting sources or decisions
+      description: Link controlling policies, ADRs, issues, repositories, or authoritative references.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I checked for an existing issue covering this change.
+          required: true
+        - label: I identified whether this change affects governance, security, architecture, or mission doctrine.
+          required: true
