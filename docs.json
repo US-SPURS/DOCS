@@ -26,7 +26,15 @@
             "pages": [
               "spurs/technology",
               "spurs/architecture",
+              "spurs/integrations",
               "spurs/engineering-standards"
+            ]
+          },
+          {
+            "group": "Operations & Delivery",
+            "pages": [
+              "spurs/deployment-playbooks",
+              "spurs/architecture-decisions"
             ]
           },
           {
