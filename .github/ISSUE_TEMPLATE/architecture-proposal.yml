@@ -1,0 +1,63 @@
+name: Architecture proposal
+description: Propose a consequential systems, integration, security, data, or operational architecture decision
+title: "[Architecture]: "
+labels:
+  - architecture
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to begin a decision that may require an Architecture Decision Record.
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and problem
+      description: Describe the current state, constraints, and why a decision is required.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Required outcome
+      description: State the capability, control, or operational result that must be achieved.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach
+      description: Describe system boundaries, contracts, ownership, and implementation direction.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include credible alternatives and their tradeoffs.
+    validations:
+      required: true
+  - type: textarea
+    id: impacts
+    attributes:
+      label: Security, data, and operational impacts
+      description: Address trust boundaries, protected data, reliability, observability, deployment, and rollback.
+    validations:
+      required: true
+  - type: textarea
+    id: systems
+    attributes:
+      label: Affected systems and repositories
+      description: Identify ATLANTIS modules, services, repositories, APIs, data stores, and external dependencies.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Readiness checks
+      options:
+        - label: I reviewed existing architecture documentation and ADRs.
+          required: true
+        - label: I identified an accountable decision owner.
+          required: true
+        - label: I included a migration and rollback direction.
+          required: true
