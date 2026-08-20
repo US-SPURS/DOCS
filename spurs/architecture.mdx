@@ -1,11 +1,13 @@
 ---
 title: "Systems Architecture"
-description: "Reference architecture, system boundaries, integration layers, and engineering principles for US-SPURS"
+description: "Reference architecture, ownership, trust boundaries, integration layers, and engineering principles for US-SPURS"
 ---
 
 # Systems Architecture
 
-US-SPURS systems should be designed as a modular, resilient, and interoperable capability ecosystem rather than a single monolithic platform.
+US-SPURS systems are designed as a modular, resilient, interoperable capability ecosystem rather than a single monolithic platform.
+
+**Division 8 / 8000 — Science, Technology & ATLANTIS AI** is the primary technology architecture owner. Headquarters establishes enterprise policy and governance, while other divisions own mission-specific applications, data, equipment, and operational requirements within the shared architecture.
 
 ## Architecture Objectives
 
@@ -13,103 +15,169 @@ The reference architecture should support:
 
 - rapid deployment
 - secure interoperability
-- degraded-mode operation
-- modular upgrades
-- auditability
+- degraded-mode and offline operation where required
+- modular upgrades and provider substitution
+- auditability and traceability
 - multi-region resilience
 - field-to-command integration
+- human oversight and override for high-impact automation
 
 ## Architecture Layers
 
 ### 1. Experience Layer
 
-Interfaces used by operators, planners, partners, and administrators.
+Interfaces used by operators, planners, administrators, partners, and the public where applicable.
 
-Examples include dashboards, mobile applications, mission portals, reporting tools, and public-service interfaces.
+Examples include dashboards, mobile applications, mission portals, case-management systems, reporting tools, and public-service interfaces.
 
-### 2. Orchestration Layer
+### 2. Universal Request Normalization / Protocol Translation Layer
 
-Coordinates workflows, AI agents, mission tasks, approvals, and cross-system automation.
+Normalizes user, system, API, agent, and machine requests into consistent internal representations for routing and execution.
 
-ATLANTIS AI serves as the primary orchestration and decision-support framework.
+### 3. Semantic Capability Intelligence Layer
 
-### 3. Service Layer
+Discovers and evaluates available models, agents, tools, APIs, data sources, workflows, infrastructure, and other capabilities relevant to a request or mission.
 
-Provides reusable operational capabilities such as identity, messaging, logistics, mapping, document management, asset tracking, notifications, and workflow services.
+### 4. Capability Provisioning / Composition / Synthesis Layer
 
-### 4. Data Layer
+Selects, assembles, provisions, or synthesizes the capabilities required to complete an authorized task.
 
-Manages operational data, mission records, telemetry, geospatial data, infrastructure information, and analytics pipelines.
+### 5. Strategic Multi-AI Arbitration / Routing Layer
 
-### 5. Integration Layer
+Routes work among AI providers, models, tools, services, and specialist agents based on policy, capability, quality, cost, latency, trust, and mission requirements.
 
-Connects internal systems, partner platforms, APIs, event streams, and field equipment.
+### 6. Autonomous Task Graph / Multi-Agent Execution Layer
 
-### 6. Infrastructure Layer
+Coordinates durable task graphs, SWARM multi-agent execution, dependencies, retries, checkpoints, approvals, and result synthesis.
 
-Includes cloud environments, edge compute, mobile systems, local fallback capability, networking, storage, and observability.
+### 7. Service & Integration Layer
 
-### 7. Security Layer
+Provides reusable capabilities including identity, messaging, logistics, mapping, documents, asset tracking, notifications, APIs, events, MCP servers, and workflow integrations.
 
-Applies identity, authorization, encryption, segmentation, monitoring, policy enforcement, and incident response controls across every layer.
+### 8. Data & Knowledge Layer
 
-## Core Engineering Principles
+Manages operational data, mission records, telemetry, geospatial information, infrastructure data, knowledge stores, retrieval systems, analytics pipelines, and authorized historical context.
 
-- Prefer modular services over tightly coupled systems.
-- Design for offline and degraded operation where missions require it.
-- Treat identity and access control as foundational architecture.
-- Use open standards and documented interfaces where practical.
-- Make system health observable from the beginning.
-- Separate experimental capability from mission-critical production systems.
-- Plan for replacement, migration, and failure recovery.
+### 9. Infrastructure & Edge Layer
 
-## System Boundaries
+Includes cloud environments, regional and edge compute, mobile systems, local fallback capability, networking, storage, observability, and deployment infrastructure.
 
-Every major system should define:
+### 10. Policy / Identity / Trust Boundary Layer
 
-- purpose
-- owner
-- users
+Applies identity, authorization, encryption, segmentation, policy enforcement, data controls, human approval, monitoring, and incident-response requirements across every layer.
+
+## ATLANTIS AI
+
+ATLANTIS is the enterprise multi-AI orchestration framework spanning capability discovery, routing, execution, policy, observability, and decision support.
+
+ATLANTIS incorporates systems and modules that were previously treated separately, including SWARM and related multi-agent execution capabilities.
+
+## Cross-Division Ownership
+
+Technology architecture is shared through explicit ownership boundaries.
+
+- **Division 0 / Headquarters** — enterprise governance, policy, authorization, standards, and strategic oversight
+- **Division 1** — emergency-management requirements, incident systems, operational continuity
+- **Division 2** — infrastructure engineering, public works systems, facility technology
+- **Division 3** — military-support requirements and operational integration
+- **Division 4** — law-enforcement, investigative, evidence, and case-system requirements
+- **Division 5** — health and human-services systems
+- **Division 6** — education and workforce systems
+- **Division 7** — housing, homelessness, and community-service systems
+- **Division 8** — enterprise technology architecture, ATLANTIS AI, cybersecurity, data, software, research, and automation
+- **Division 9** — space, aviation, maritime, unmanned, and mobility systems
+- **Division 10** — energy, environmental, sensing, and resilience systems
+- **Division 11** — logistics, procurement, fleet, inventory, and supply-chain systems
+- **Division 12** — finance, HR, payroll, records, and enterprise-service systems
+- **Division 13** — strategic, regional, intergovernmental, partnership, and global-operation systems
+
+## System Boundary Requirements
+
+Every major production system should define:
+
+- mission purpose
+- accountable owner
+- authorized users and workloads
 - data inputs and outputs
 - trust boundaries
 - dependencies
-- availability requirements
+- availability and performance requirements
 - recovery objectives
-- support model
+- audit and retention requirements
+- support and lifecycle model
 
 ## Integration Standards
 
-Preferred integration patterns include:
+Preferred patterns include:
 
-- documented REST or event-driven APIs
-- versioned schemas
-- explicit authentication and authorization
-- idempotent operations where possible
-- structured logging and traceability
-- tested failure and retry behavior
+- documented and versioned APIs
+- event-driven interfaces for durable asynchronous coordination
+- Model Context Protocol for approved AI-facing tools and resources
+- typed schemas and explicit contracts
+- workload identity and least-privilege authorization
+- idempotent operations where practical
+- structured logging, correlation IDs, and distributed tracing
+- bounded retry and reconciliation behavior
 
 ## Deployment Environments
 
-A mature deployment model should distinguish:
+The deployment model should distinguish:
 
 - development
-- integration testing
+- integration and automated test
 - staging
 - production
 - restricted or sensitive environments
-- field or edge deployments
+- field and edge deployments
+- isolated recovery or continuity environments where required
+
+## Resilience
+
+Mission-critical systems should be designed for partial failure rather than assuming perfect connectivity or provider availability.
+
+Resilience patterns may include:
+
+- provider failover
+- local or edge processing
+- durable queues and workflow history
+- replicated state where appropriate
+- offline operation and delayed synchronization
+- tested backup and restoration
+- manual fallback procedures
+
+## Security Architecture
+
+Security is an enterprise responsibility led technically by Division 8 and governed by Headquarters.
+
+Architecture should implement:
+
+- identity-first access
+- explicit trust boundaries
+- least privilege
+- encryption in transit and at rest
+- secret isolation and rotation
+- network and workload segmentation
+- audit logging
+- dependency and supply-chain controls
+- vulnerability management
+- incident detection and response
 
 ## Architecture Review
 
-Major systems should receive review before production deployment for:
+Major systems should receive documented review before production deployment for:
 
-- security
-- reliability
+- mission suitability
+- security and privacy
+- reliability and recovery
 - scalability
 - interoperability
+- accessibility
 - supportability
+- lifecycle cost
 - operational usefulness
 
 ## Architecture Decision Records
 
-Significant technical decisions should be captured as Architecture Decision Records documenting context, chosen approach, alternatives, consequences, and review date.
+Significant technical decisions must be captured as Architecture Decision Records documenting context, decision, alternatives, consequences, security impact, operational impact, migration, and rollback.
+
+Use `docs/adr/0000-template.md` as the standard ADR starting point.
