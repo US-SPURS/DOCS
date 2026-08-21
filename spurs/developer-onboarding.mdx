@@ -1,105 +1,178 @@
 ---
 title: "Developer Onboarding"
-description: "Repository onboarding, working model, expectations, and setup guidance for US-SPURS contributors"
+description: "Repository onboarding, organizational context, engineering expectations, and contribution workflow for US-SPURS contributors"
 ---
 
 # Developer Onboarding
 
-This page provides a baseline onboarding path for engineers, technical writers, systems architects, and contributors working in the US-SPURS documentation and systems ecosystem.
+This page provides the baseline onboarding path for engineers, technical writers, systems architects, automation developers, AI-agent builders, security contributors, and maintainers working in the US-SPURS documentation and systems ecosystem.
+
+## Organizational Context
+
+Before changing code, automation, architecture, or documentation, contributors should understand the current organizational model:
+
+- Headquarters is **Division 0 / 0000**.
+- US-SPURS has **13 operating divisions**.
+- **Division 8 / 8000 — Science, Technology & ATLANTIS AI** is the primary technology architecture owner.
+- Mission-specific systems remain accountable to the division that owns the operational requirement.
+- ATLANTIS is the consolidated multi-AI system.
+- SWARM is an integrated ATLANTIS module rather than a separate top-level system.
 
 ## Primary Goals
 
 Contributors should understand:
 
 - what US-SPURS is building
-- how documentation is organized
-- what quality standard is expected
-- how to propose, structure, and submit work
-- how technical and mission context should shape implementation
+- which division owns the mission requirement
+- how documentation and systems are organized
+- what quality and security standards apply
+- how to propose, structure, review, and publish changes
+- how ATLANTIS and cross-division architecture affect implementation
+
+## Required Reading Order
+
+New contributors should review:
+
+1. `spurs/index.mdx`
+2. `spurs/organization.mdx`
+3. `spurs/missions.mdx`
+4. `spurs/governance.mdx`
+5. `spurs/technology.mdx`
+6. `spurs/architecture.mdx`
+7. `spurs/integrations.mdx`
+8. `spurs/engineering-standards.mdx`
+9. `spurs/deployment-playbooks.mdx`
+10. `CONTRIBUTING.md`
+11. `SECURITY.md`
 
 ## Working Principles
 
-US-SPURS contributors should build with the following assumptions:
+Contributors should build with the following assumptions:
 
 - documentation is operational, not ornamental
-- systems should be understandable by future contributors
-- technical work should map to mission outcomes
-- security and resilience are not optional extras
+- systems should be understandable by future maintainers
+- technical work must map to an accountable mission owner
+- security and resilience are first-class requirements
+- provider-specific dependencies should remain behind clean adapters where practical
+- human oversight is required for high-impact automation
 - clear structure beats clever ambiguity
-
-## Recommended First Steps
-
-1. Read the US-SPURS overview page.
-2. Review organizational, mission, technology, and infrastructure pages.
-3. Review governance and doctrine expectations.
-4. Review contribution standards and engineering standards.
-5. Confirm the scope of the task before editing content.
+- experimental systems must not silently become production-critical dependencies
 
 ## Repository Areas
 
 ### `/spurs/`
 
-Primary enterprise documentation set for agency overview, doctrine, mission domains, systems, and infrastructure.
+Primary enterprise documentation covering organization, missions, governance, technology, architecture, integration, and operations.
 
-### Root documentation files
+### `/docs/adr/`
 
-Repository-level files such as README, CONTRIBUTING, and standards documents define how contributors work with the repo.
+Architecture Decision Records and the standard ADR template.
+
+### Root Files
+
+Repository-wide files such as `README.md`, `CONTRIBUTING.md`, and `SECURITY.md` define repository scope and contribution expectations.
 
 ### `.github/`
 
-GitHub-specific process files such as issue templates, pull request templates, and repository automation support files.
+GitHub workflow support including issue forms, pull-request templates, and repository automation.
 
-## Expected Contribution Types
+## Contribution Types
 
 Contributors may work on:
 
-- documentation expansion
+- documentation expansion and correction
 - system architecture definitions
-- integration guidance
+- ATLANTIS modules and integration patterns
+- API, event, and MCP integration guidance
 - engineering standards
-- operational playbooks
-- workflow and template improvements
-- developer tooling and repo hygiene
+- deployment and recovery playbooks
+- architecture decision records
+- security and trust-boundary improvements
+- developer tooling and repository automation
 
-## Documentation Standards
+## Division Ownership
 
-Contributors should:
+Every substantial contribution should identify its owning division or enterprise function.
 
-- write with precision
-- avoid vague placeholders
-- prefer operational clarity over marketing language
-- organize content so it scales over time
-- preserve naming and structural consistency
+Examples:
+
+- emergency-management system → Division 1
+- infrastructure platform → Division 2
+- investigation or evidence system → Division 4
+- healthcare-support platform → Division 5
+- education platform → Division 6
+- housing-support system → Division 7
+- ATLANTIS, cybersecurity, AI, data, or shared technology → Division 8
+- aviation, maritime, space, or mobility system → Division 9
+- energy or environmental system → Division 10
+- logistics, fleet, inventory, or procurement platform → Division 11
+- finance, HR, payroll, or records system → Division 12
+- intergovernmental or global-operations platform → Division 13
+
+Cross-division systems should identify a lead owner and all material supporting divisions.
 
 ## Before Opening a Change
 
 A contributor should be able to answer:
 
-- What problem is this change solving?
-- Who will use this content or system?
-- Where does this belong in the documentation structure?
-- What assumptions need to be made explicit?
-- Does this conflict with existing doctrine, architecture, or standards?
+1. What problem is being solved?
+2. Which division or Headquarters function owns the requirement?
+3. Who will use the finished capability?
+4. What systems, data, or trust boundaries are affected?
+5. Does an existing ADR control this decision?
+6. Does the change require security, privacy, operational, or architecture review?
+7. How will the change be tested and rolled back?
+8. Does this reduce user autonomy or introduce high-impact automation?
+
+## Branch and Pull-Request Expectations
+
+Changes should use focused branches and focused pull requests.
+
+Pull requests should:
+
+- describe the mission or technical problem
+- identify owning divisions
+- summarize implementation choices
+- link relevant issues and ADRs
+- disclose security and data implications
+- include validation evidence
+- describe rollback or reversibility
 
 ## Review Expectations
 
 Reviews should examine:
 
+- mission alignment
+- organizational ownership
 - accuracy
-- structural quality
+- security and privacy
 - maintainability
-- alignment with mission and doctrine
-- technical clarity
+- resilience
+- architecture consistency
 - naming consistency
+- operational usefulness
 - future extensibility
 
-## Future Expansion
+## Architecture Decisions
 
-This page can later be expanded with:
+Material changes to system boundaries, identity, data ownership, provider strategy, public APIs, event contracts, deployment architecture, or ATLANTIS execution policy should use an Architecture Decision Record.
 
-- local dev environment instructions
-- branch and release strategy
-- issue triage workflow
-- docs build and preview workflow
-- architecture decision record conventions
-- security review checklist
+Use `docs/adr/0000-template.md` as the starting point.
+
+## Definition of Done
+
+A contribution is not complete merely because code or prose exists. Completion should include, as applicable:
+
+- implementation
+- automated tests
+- documentation
+- security review
+- operational validation
+- monitoring and observability
+- migration or rollback plan
+- updated ADRs
+- ownership and support information
+
+## Contributor Philosophy
+
+Contributors should optimize for systems that remain useful, understandable, secure, resilient, and maintainable after the original author is no longer present.
