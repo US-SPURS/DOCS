@@ -1,20 +1,33 @@
 ---
 title: "Systems Integration Framework"
-description: "Integration principles, API boundaries, identity, events, MCP, and cross-system interoperability for US-SPURS"
+description: "Integration ownership, API boundaries, identity, events, MCP, ATLANTIS adapters, and cross-system interoperability for US-SPURS"
 ---
 
 # Systems Integration Framework
 
-US-SPURS systems should integrate through explicit contracts rather than hidden dependencies. The integration layer must support internal services, ATLANTIS AI modules, partner systems, field applications, and future platforms without forcing every system into one technology stack.
+US-SPURS systems should integrate through explicit, versioned contracts rather than hidden dependencies. **Division 8 / 8000 — Science, Technology & ATLANTIS AI** owns enterprise integration architecture, while each mission division owns the business rules, data responsibilities, and operational requirements of its systems.
 
 ## Integration Objectives
 
-- Provider-neutral interoperability
-- Secure exchange of data and commands
-- Durable workflows with audit history
-- Clear ownership of every interface
-- Graceful operation during partial outages
-- Versioned contracts with controlled deprecation
+- provider-neutral interoperability
+- secure exchange of data and commands
+- durable workflows with audit history
+- clear ownership of every interface
+- graceful operation during partial outages
+- versioned contracts with controlled deprecation
+- cross-division traceability
+
+## Ownership Model
+
+Every production integration must identify:
+
+- the lead owning division
+- the producing system owner
+- the consuming system owner
+- Division 8 architecture ownership where shared technology is involved
+- Headquarters policy ownership where enterprise rules apply
+
+Cross-division integrations must not rely on implied ownership.
 
 ## Integration Patterns
 
@@ -32,13 +45,32 @@ Long-running missions should use checkpointed workflows with bounded retries, ex
 
 ### Model Context Protocol
 
-MCP may be used to expose approved tools, data sources, and operational capabilities to ATLANTIS and authorized AI agents. MCP servers must enforce least privilege and publish clear tool schemas.
+MCP may expose approved tools, data sources, and operational capabilities to ATLANTIS and authorized AI agents. MCP servers must enforce least privilege, publish clear schemas, identify ownership, and define side-effect behavior.
+
+## ATLANTIS Integration Model
+
+ATLANTIS consumes capabilities through typed adapters and policy-controlled tools rather than embedding provider logic throughout the system.
+
+Provider-specific SDKs should remain behind adapters so routing, auditing, budgets, failover, and policy remain consistent.
+
+ATLANTIS-facing capabilities should declare:
+
+- capability name and purpose
+- owning division or service
+- authorization requirements
+- input and output schema
+- side effects
+- cost and rate constraints
+- timeout behavior
+- retry safety
+- audit requirements
+- human-approval requirements
 
 ## Contract Requirements
 
 Every production integration should define:
 
-- owning team or system
+- owning division and team
 - purpose and authorized consumers
 - request and response schema
 - authentication and authorization method
@@ -47,19 +79,23 @@ Every production integration should define:
 - error taxonomy
 - versioning and deprecation policy
 - observability requirements
+- data-classification requirements
+- recovery and reconciliation behavior
 
 ## Identity and Trust
 
-Integrations must not assume that network location equals trust. Each request should carry verifiable identity, scoped authorization, and enough context for policy enforcement.
+Integrations must not assume that network location equals trust. Each request should carry verifiable workload or user identity, scoped authorization, and enough context for policy enforcement.
 
 ## Data Handling
 
 - Minimize data shared across boundaries.
+- Identify the authoritative system of record.
 - Classify data before integration design.
-- Encrypt sensitive data in transit and at rest.
+- Encrypt protected data in transit and at rest.
 - Record access to protected datasets.
 - Define retention and deletion behavior.
-- Avoid copying authoritative data without a defined synchronization model.
+- Avoid uncontrolled copies of authoritative data.
+- Document synchronization and conflict-resolution rules.
 
 ## Event Envelope
 
@@ -67,16 +103,46 @@ A standard event should include:
 
 - event identifier
 - event type and schema version
-- source system
+- source system and owning division
 - correlation and causation identifiers
 - creation timestamp
 - actor or workload identity
 - classification and handling metadata
 - payload
 
+## Division Examples
+
+### Division 1 — Emergency Management
+
+Incident systems may publish alerts, resource requests, operational status, and incident-state events.
+
+### Division 2 — Infrastructure & Public Works
+
+Infrastructure systems may publish asset status, project milestones, inspection findings, and utility telemetry.
+
+### Division 4 — Law Enforcement & Investigations
+
+Investigative integrations require stronger evidence-handling, access-control, audit, and chain-of-custody requirements.
+
+### Division 5 — Health & Human Services
+
+Health integrations require appropriate privacy, consent, and protected-data controls.
+
+### Division 8 — Science, Technology & ATLANTIS AI
+
+Division 8 owns shared adapters, AI orchestration interfaces, cybersecurity integrations, data platforms, and common technical services.
+
+### Division 11 — Logistics & Procurement
+
+Logistics integrations may exchange inventory, fleet, shipment, procurement, and asset-state information.
+
+### Division 12 — Finance & Enterprise Services
+
+Finance and workforce integrations require strong transaction integrity, authorization, audit, and records controls.
+
 ## Failure Handling
 
-Integrations should fail predictably. Critical workflows must include:
+Critical integrations must include:
 
 - timeouts
 - bounded retries with backoff
@@ -84,11 +150,18 @@ Integrations should fail predictably. Critical workflows must include:
 - duplicate protection
 - reconciliation procedures
 - operator-visible status
-
-## ATLANTIS Integration
-
-ATLANTIS should consume capabilities through typed adapters and policy-controlled tools. Provider-specific SDKs should remain behind adapters so routing, auditing, budgets, and failover behavior remain consistent.
+- manual recovery paths where mission impact warrants them
 
 ## Integration Review Gate
 
-Before production use, an integration should pass architecture, security, data-governance, operational-readiness, and rollback review.
+Before production use, an integration should pass:
+
+1. ownership review
+2. architecture review
+3. cybersecurity review
+4. data-governance and privacy review
+5. operational-readiness review
+6. failure and recovery validation
+7. rollback or disablement review
+
+High-impact integrations should also document controlling ADRs and approval authority.
