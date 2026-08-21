@@ -5,7 +5,21 @@ description: "Standard deployment, validation, rollback, incident, and recovery 
 
 # Deployment Playbooks
 
-US-SPURS deployments should be repeatable, observable, reversible, and appropriate to the mission risk. Production changes must not depend on undocumented tribal knowledge.
+US-SPURS deployments should be repeatable, observable, reversible, and appropriate to mission risk. Production changes must identify an accountable owner, an owning division, and the authority responsible for accepting operational risk.
+
+## Deployment Ownership
+
+### Headquarters — Division 0 / 0000
+
+Headquarters owns enterprise policy, major exceptions, high-impact risk acceptance, and cross-division deployment governance.
+
+### Division 8 / 8000 — Science, Technology & ATLANTIS AI
+
+Division 8 owns enterprise technical deployment standards, shared platforms, ATLANTIS-related systems, cybersecurity controls, and common infrastructure patterns.
+
+### Mission Divisions
+
+Each operating division owns deployment readiness for systems used to execute its mission. Cross-division systems must identify a lead division and supporting owners.
 
 ## Deployment Classes
 
@@ -21,27 +35,35 @@ Requires automated tests, deployment preview, owner review, health checks, and d
 
 Requires formal change approval, staged rollout, security review, recovery validation, operator communications, and an active rollback decision point.
 
+### High-Impact AI or Automation Change
+
+Requires additional review of model behavior, tool permissions, data exposure, budget limits, auditability, human override, failure containment, and the effect on user autonomy.
+
 ## Standard Deployment Sequence
 
-1. Confirm scope and accountable owner.
-2. Validate requirements and affected systems.
-3. Run automated quality and security checks.
-4. Produce a preview or staging deployment.
-5. Validate critical user and operational paths.
-6. Confirm monitoring, alerts, and rollback readiness.
-7. Deploy through controlled automation.
-8. Perform post-deployment verification.
-9. Record outcome, anomalies, and follow-up actions.
+1. Confirm mission purpose and owning division.
+2. Identify technical owner and risk-acceptance authority.
+3. Validate requirements and affected systems.
+4. Run automated quality and security checks.
+5. Produce a preview or staging deployment.
+6. Validate critical user and operational paths.
+7. Confirm monitoring, alerts, recovery, and rollback readiness.
+8. Deploy through controlled automation.
+9. Perform post-deployment verification.
+10. Record outcome, anomalies, ownership, and follow-up actions.
 
 ## Pre-Deployment Checklist
 
-- Change scope is documented.
+- Mission and technical ownership are documented.
 - Tests pass in a clean environment.
 - Secrets are not embedded in code or documentation.
 - Dependencies and configuration changes are identified.
-- Database or schema changes have forward and rollback plans.
+- Data migrations have forward and rollback plans.
 - Monitoring covers the affected capability.
-- Owner and rollback authority are known.
+- Rollback authority is known.
+- Relevant ADRs are linked.
+- Security and privacy impacts are reviewed.
+- User-facing or operational fallback paths exist where warranted.
 
 ## Progressive Delivery
 
@@ -55,6 +77,44 @@ Mission-sensitive services should use staged exposure where practical:
 
 Promotion should depend on measured health rather than elapsed time alone.
 
+## Division-Specific Deployment Considerations
+
+### Division 1 — Emergency Management
+
+Changes affecting incident-management systems should prioritize availability, degraded-mode operation, and continuity during active incidents.
+
+### Division 2 — Infrastructure & Public Works
+
+Deployments connected to physical infrastructure should account for safety, field validation, telemetry integrity, and manual fallback.
+
+### Division 4 — Law Enforcement & Investigations
+
+Changes affecting investigative or evidence systems require strict access control, auditability, evidence integrity, and chain-of-custody protections.
+
+### Division 5 — Health & Human Services
+
+Deployments handling health or human-services data require appropriate privacy, consent, and protected-data controls.
+
+### Division 8 — Science, Technology & ATLANTIS AI
+
+AI, cybersecurity, shared-platform, and automation deployments require architecture review, trust-boundary review, observability, and controlled rollback.
+
+### Division 9 — Space, Aviation, Maritime & Mobility
+
+Changes interfacing with vehicles, unmanned systems, aviation, maritime, or mobility systems require safety-critical testing and operational fail-safe behavior.
+
+### Division 10 — Energy & Environmental Resilience
+
+Energy and environmental deployments should address physical safety, islanding or degraded operation, telemetry integrity, and recovery procedures.
+
+### Division 11 — Logistics & Procurement
+
+Logistics deployments should preserve inventory accuracy, shipment visibility, asset accountability, and manual continuity procedures.
+
+### Division 12 — Finance & Enterprise Services
+
+Finance, HR, payroll, and records deployments require transaction integrity, reconciliation, authorization, and strong audit trails.
+
 ## Post-Deployment Validation
 
 Verify:
@@ -62,35 +122,78 @@ Verify:
 - service health and availability
 - error rate and latency
 - authentication and authorization
-- critical workflows
+- critical mission workflows
 - event and audit delivery
 - data integrity
 - alerts and dashboards
+- expected user and operator outcomes
 
 ## Rollback
 
-Rollback must be treated as a normal operational capability. A rollback plan should identify the trigger, responsible decision-maker, technical procedure, data implications, and verification steps.
+Rollback is a normal operational capability. A rollback plan should identify:
+
+- trigger conditions
+- responsible decision-maker
+- technical procedure
+- data implications
+- dependent-system effects
+- communication requirements
+- verification steps
 
 ## Incident Response
 
 When a deployment causes or reveals an incident:
 
 1. Protect people and critical operations.
-2. Stabilize the system.
+2. Stabilize the affected system.
 3. Preserve evidence and logs.
-4. Establish incident command and communications.
-5. Roll back, disable, or isolate the affected capability.
+4. Establish incident command and accountable ownership.
+5. Roll back, disable, isolate, or fail over the affected capability.
 6. Restore service through a validated path.
-7. Complete an after-action review without blame.
+7. Communicate status to affected divisions and stakeholders.
+8. Complete an after-action review and corrective-action plan.
 
 ## Field and Degraded-Environment Deployment
 
-Field systems should account for intermittent networks, local operation, delayed synchronization, limited power, hardware replacement, and manual fallback procedures.
+Field systems should account for:
+
+- intermittent networks
+- local operation
+- delayed synchronization
+- limited power
+- hardware replacement
+- bandwidth constraints
+- offline authentication where appropriate
+- manual fallback procedures
 
 ## AI and Automation Deployments
 
-AI-enabled deployments require additional review for tool permissions, model behavior, budget limits, auditability, human override, data exposure, and failure containment.
+AI-enabled deployments must define:
+
+- model and provider dependencies
+- tool permissions
+- human approval thresholds
+- budget and rate limits
+- audit logging
+- data-access boundaries
+- failure containment
+- model or provider fallback
+- user override or appeal where appropriate
+
+A deployment that materially reduces the agency of any natural person or sentient being should be treated as a design failure unless specifically required by lawful, narrowly tailored authority.
 
 ## After-Action Review
 
-Every significant deployment or incident should capture what changed, what happened, contributing conditions, effective safeguards, failed assumptions, corrective actions, owners, and due dates.
+Every significant deployment or incident should capture:
+
+- what changed
+- why it changed
+- owning division and technical owner
+- what happened
+- contributing conditions
+- safeguards that worked
+- assumptions that failed
+- corrective actions
+- responsible owners
+- due dates
+- ADR or policy updates required
